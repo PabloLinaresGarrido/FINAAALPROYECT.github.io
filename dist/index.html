@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Index</title>
+    <link rel="stylesheet" href="styles.css" />
+	
+  
+   
+  </head>
+  <body>
+    
+    <header>
+      <nav>
+        
+        
+        <ul class="left-links">
+          <a href="#" id="openButton" class="headerLink">¿Qué es E-zum?</a>
+<div class="popup">
+  <div class="popup-content">
+    <h2>¿Qué es E-zum?</h2>
+    <p>E-ZUM es una plataforma descentralizada que permite a los usuarios realizar transacciones en ethers a través de identificativos de direcciones públicas y wallets que han sido previamente añadidos a la plataforma</p>
+    <p>1 - Los usuarios pueden crear una cuenta y agregar sus wallets a la plataforma. También pueden agregar las direcciones públicas de sus conocidos o empresas, a las que se les asigna un identificativo único. Una vez que estas direcciones públicas están agregadas, los usuarios pueden realizar transacciones en ethers utilizando los identificativos de las direcciones públicas y wallets asignados.</p>
+   <p>2 -  E-ZUM tiene como objetivo mejorar la usabilidad de las transacciones en criptomonedas, eliminando la necesidad de largas y complicadas cadenas de caracteres de direcciones públicas. En lugar de eso, los usuarios pueden utilizar identificativos únicos que han sido asignados a cada dirección pública y wallet.</p>
+    <button id="close-btn" class="close-btn">Cerrar</button>
+  </div>
+</div>
+
+          <a href="BLokchcianE Analisis funcional.pdf" style="margin-left: 20px;" target="_blank"><li class="headerLink">Análisis Funcional</li></a>
+        </ul>
+        <img src="E-ZUM.png">
+        <ul class="right-links">
+          <a href="https://www.linkedin.com/in/pablolinaresgarrido/" target="_blank"><li class="headerLink">¿Desarrollador?</li></a>
+          <a href="#" style="margin-left: 20px;" class="headerLink" id="openButton2">Paso a Paso</a>
+          <div class="popup2">
+            <div class="popup-content2">
+              <h2>Paso a Paso</h2>
+              <p>A continuación se detalla paso a paso como poder comenzar a utilizar la plataforma:</p>
+              <p>1 - Copia las semillas de tu wallet e insertala en el formulario "Añade tus wallets" asignándole un nombre a tu nueva wallet. Pulsa en "Añadir Wallet Personal"</p>
+             <p>2 -  Copia la dirección pública de una wallet a la cual suelas realizar transacciones con frecuencia y rellena el formulario de "Guardar direcciones" de igual modo.</p>
+             <p>3 -  Completa el formulario de "Enviar Ethers" especificando desde cual de tus wallets quieres enviar la transacción y hacia quien, además de cuantos ethers deseas enviar.</p>
+             <p>4 -  Espera a que se termine de minar la transacción. Una vez confirmada, puedes acceder al historial de tus transacciones y consultar la transacción desde etherscan</p>
+             <button id="close-btn2" class="close-btn">Cerrar</button>
+            </div>
+          </div>
+        </ul>
+      </nav>
+    </header>
+    <div style="width: 100%;">
+      <hr style="border-top: 2px solid #ccc;">
+    <div class="container">
+      
+      <div class="column">
+        <h2>Añade tus wallets:</h2>
+    <form>
+      <label for="wallet-seed2">Introduce las semillas de la wallet que deseas añadir:</label>
+      <input type="password" id="wallet-seed2" name="wallet-seed2" required>
+      <br>
+      <label for="wallet-id2">Proporciona el nombre que deseas asignar a la wallet:</label>
+      <input type="text" id="wallet-id2" name="wallet-id2">
+      <br>
+      <button type="submit" id="add-wallet2">Añadir Wallet Personal</button>
+    </form>
+    <div class="columnWallets">
+    <h2>Mis wallets</h2>
+    <ul id="wallet-list2"></ul>
+  </div>
+      </div>
+      <div class="column">
+        <h2>Enviar Ethers:</h2>
+      <form>
+        <label for="to-wallet">¿A quien quieres mandar ethers?:</label>
+        <select id="to-wallet" name="to-wallet" required></select>
+        <br>
+        <label for="to-recipient">¿Desde que wallet deseas enviar ethers?:</label>
+        <select  id="to-wallet2" name="to-wallet2" required></select>
+        <br>
+        <label for="amount">Cantidad de ethers que deseas enviar:</label>
+        <input type="number" id="amount" name="amount" min="0" step="0.0001" required>
+        <br>
+        <button type="button" id="send-money">Enviar tokens</button>
+        <span id="transaction-status" class="transaction-status">
+          <div class="loading-spinner">
+            <div class="spinner-container">
+              <div class="spinner">
+                <div class="spinner-item"></div>
+                <div class="spinner-item"></div>
+                <div class="spinner-item"></div>
+                <div class="spinner-item"></div>
+              </div>
+            </div>
+          </div>
+        </span>
+        <p id="AvisoTransacción" style="display: none;">La transacción se está enviando</p>
+      </form>
+    </div>
+      <div class="column">
+        <h2>Guardar direcciones:</h2>
+    <form>
+      <label for="wallet-seed">Introduce la dirección pública de la wallet que deseas guardar:</label>
+      <input type="text" id="wallet-seed" name="wallet-seed" required>
+      <br>
+      <label for="wallet-id">Nombre que deseas asignar a la wallet de destino:</label>
+      <input type="text" id="wallet-id" name="wallet-id">
+      <br>
+      <button type="submit" id="add-wallet">Guardar wallet de destino</button>
+    </form>
+    <div class="columnWallets">
+    <h2>Wallets de destino</h2>
+    <ul id="wallet-list"></ul>
+  </div>
+  </div>
+
+    
+  
+  <div class="columnTransactions">
+    <button type="button" id="mostrarHistorial">Mostrar Historial de Transacciones</button>
+    <h2>Historial:</h2>
+    <ul id="transaction-list">
+    </ul>
+    </div>
+  </div>
+    
+    
+      
+      
+      <script src="./bundle.js"></script>
+      
+    
+   <style>
+    .popup,.popup2 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+      z-index: 999; /* Asegura que el panel esté en la parte superior de la pila */
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    
+    .popup-content,.popup-content2 {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+      max-width: 80%;
+    }
+    
+    .close-btn, .close-btn2 {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+
+
+#send-money[disabled]{
+  cursor: not-allowed;
+}
+
+
+.transaction-status {
+  display: none;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+
+}
+
+.loading-spinner {
+  margin-left: 280px;
+  margin-top: -40px;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.spinner-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: rotateZ(45deg);
+}
+
+.spinner-item {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #0400ff;
+  animation: loading-spinner 1s infinite ease-in-out;
+}
+
+.spinner-item:nth-child(1) {
+  top: 0;
+  left: 0;
+  animation-delay: 0.25s;
+}
+
+.spinner-item:nth-child(2) {
+  top: 0;
+  right: 0;
+  animation-delay: 0.5s;
+}
+
+.spinner-item:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  animation-delay: 0.75s;
+}
+
+.spinner-item:nth-child(4) {
+  bottom: 0;
+  right: 0;
+  animation-delay: 1s;
+}
+
+@keyframes loading-spinner {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.5);
+  }
+  40% {
+    transform: scale(0.5);
+  }
+  60% {
+    transform: scale(1.5);
+  }
+  80% {
+    transform: scale(1);
+  }
+}
+
+
+
+    img{
+      width: 350px;
+      margin-top: 1%;
+      margin: auto;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 0;
+      padding: 20px;
+      
+ 
+    }
+    
+    form {
+      width: 90%;
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 3%;
+      border-color: #7d93db;
+      
+    }
+    
+    form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    form input[type="text"],
+    form input[type="number"],
+    form input[type="password"],
+    form select {
+      display: block;
+      width: 90%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    button{
+      display: block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+
+
+
+
+    form button[type="submit"],
+    form button[type="button"] {
+      display: block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    form button[type="submit"]:hover,
+    form button[type="button"]:hover {
+      background-color: #0069d9;
+    }
+    
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    ul li {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+
+    }
+    
+    ul li span {
+      font-weight: bold;
+    }
+    
+    h2 {
+      margin-top: 40px;
+    }
+    
+    #wallet-list2,
+    #wallet-list
+     {
+      width: 100%;
+      height: 100px;
+    }
+    
+    #transaction-list {
+      display: none;
+      width: 100%;
+      height: 100px;
+    }
+    
+    #send-money {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    .column {
+      width: calc(30% - 40px);
+      margin: 20px;
+      height: 610px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      border-color: #001f85;
+    
+      
+    }
+    
+    .columnTransactions{
+      clear: both;
+      width: 100%;
+      margin: 20px;
+      height: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      border-color: #001f85;
+    }
+
+
+
+    .columnWallets, .columnTransactions {
+     
+      overflow: scroll;
+    }
+
+    @media screen and (max-width: 768px) {
+      .column {
+        width: 100%;
+        margin: 20px 0;
+      }
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    nav {
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    nav ul {
+      margin: 60px;
+      padding: 10px;
+      list-style: none;
+    }
+    
+    nav .left-links {
+      float: left;
+    }
+    
+    nav .right-links {
+      float: right;
+    }
+    
+    .headerLink{
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      
+    }
+
+    .headerLink:hover{
+      background-color: #000f96;
+      cursor: pointer;
+      transform: scaleX(1.1);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+   
+    
+    header{
+      background-color: #7d93db;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+   #mostrarAñadirWallet{
+    float: left;
+   }
+
+   #mostrarAñadirWallet2{
+    float: right;
+   }
+   </style>
+    </body>
+</html>
